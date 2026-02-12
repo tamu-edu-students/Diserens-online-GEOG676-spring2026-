@@ -1,7 +1,7 @@
 # create a gdb and garage feature
 import arcpy
 
-arcpy.env,workspace = r'C:\Users\holde\OneDrive\Documents\GitHub\Diserens-online-GEOG676-spring2026-\Lab_4\codes_env'
+arcpy.env.workspace = r'C:\Users\holde\OneDrive\Documents\GitHub\Diserens-online-GEOG676-spring2026-\Lab_4'
 folder_path = r'C:\Users\holde\OneDrive\Documents\GitHub\Diserens-online-GEOG676-spring2026-\Lab_4'
 gdb_name = 'Test.gdb'
 gdb_path = folder_path + '\\' + gdb_name
@@ -32,4 +32,4 @@ garageBuffered = arcpy.Buffer_analysis(gdb_path + '\Garage_Points_Reprojected', 
 # intersect buffer with buildings
 arcpy.Intersect_analysis([garageBuffered, buildings], gdb_path + '\Garage_Building_Intersection', 'ALL')
 
-arcpy.TableToTable_conversion(gdb_path + '\Garage_Building_Intersection.dbf', 'C:\Users\holde\OneDrive\Documents\GitHub\Diserens-online-GEOG676-spring2026-\Lab_4', 'nearybyBuildings.csv')
+arcpy.conversion.TableToTable(gdb_path + '\Garage_Building_Intersection', folder_path, 'nearbyBuildings.csv')
